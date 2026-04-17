@@ -7,6 +7,7 @@
 //variables
 let score= 0;
 let timeLeft= 60;
+let gameStarted = false;
 
 
 // HTML DOM
@@ -18,9 +19,10 @@ const timerDisplay = document.getElementById('timerDisplay');
 // UI Functions and events
 button1.addEventListener('click', () => {
 increaseScore();
+startGame();
 })
 
-// TODO: Start only when "click me is Clicked"
+// TODO start only when "Click Me is Clicked"
 setInterval(countdown, 1000);
 
 
@@ -35,3 +37,10 @@ function countdown() {
  timerDisplay.innerText = timeLeft;
  // TODO: Stop timer at the end
 }
+
+function startGame()
+setInterval(countdown, 1000);
+gameStarted = true;
+
+
+function endGame()
