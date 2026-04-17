@@ -8,6 +8,8 @@
 let score= 0;
 let timeLeft= 60;
 let gameStarted = false;
+let gameEnded = false;
+let interval = null;
 
 
 // HTML DOM
@@ -18,12 +20,15 @@ const timerDisplay = document.getElementById('timerDisplay');
 
 // UI Functions and events
 button1.addEventListener('click', () => {
-increaseScore();
-startGame();
-})
+if (!gameEnded) {
+  increaseScore();
+}
 
-// TODO start only when "Click Me is Clicked"
-setInterval(countdown, 1000);
+if(!gameStarted) {
+startGame();
+}
+  })
+
 
 
 // Functions
@@ -35,12 +40,23 @@ function increaseScore() {
 function countdown() {
   timeLeft--;
  timerDisplay.innerText = timeLeft;
- // TODO: Stop timer at the end
+
+ if (timeLeft <= 0) {
+   timerDisplay.innerText = 0;
+   endGame();
+ }
 }
 
-function startGame()
-setInterval(countdown, 1000);
-gameStarted = true;
+function startGame() {
+ interval = setInterval(countdown, 1000);
+  gameStarted = true;
+}
+
+function endGame() {
+gameEnded = true;
+clearInterval(interval);
+}
+// TODO Make something apper to for the user to imput their name
 
 
-function endGame()
+
