@@ -1,21 +1,20 @@
-// click a button or object to earn points so that i can increase my score
-//see my current score during the game so that i know how well i am doing
-
-//see a countdown timer so that i know how much time is left. serInterval
-
-
-//variables
-let score= 0;
-let timeLeft= 60;
-let gameStarted = false;
-let gameEnded = false;
-let interval = null;
+// Variabler
+let score = 0;          // spelarens poäng
+let timeLeft = 60;     // tiden som är kvar i sekunder
+let gameActive = false; // om spelet är igång eller inte
+let countdown = null;   // referens till timer (setInterval)
 
 
-// HTML DOM
-const button1 = document.getElementById('button1');
-const scoreDisplay = document.getElementById('scoreDisplay');
-const timerDisplay = document.getElementById('timerDisplay');
+// Hämtar in alla HTML-element så vi kan styra dem med JavaScript
+const startBtn = document.getElementById("startBtn");
+const clickBtn = document.getElementById("clickBtn");
+const saveBtn = document.getElementById("saveBtn");
+const resetBtn = document.getElementById("resetBtn");
+const playerNameInput = document.getElementById("playerName");
+const scoreEl = document.getElementById("score");
+const timerEl = document.getElementById("timer");
+const messageEl = document.getElementById("message");
+const scoreboardList = document.getElementById("scoreboardList");
 
 
 // UI Functions and events
@@ -29,6 +28,10 @@ startGame();
 }
   })
 
+
+
+input.style.display = "none"
+label1.style.display = "none"
 
 
 // Functions
@@ -55,8 +58,15 @@ function startGame() {
 function endGame() {
 gameEnded = true;
 clearInterval(interval);
+button1.style.display = "none";
+input1.style.display = "block";
+label1.style.display = "block";
+button2.style.display = "block";
 }
-// TODO Make something apper to for the user to imput their name
 
+function sumitHighScore() {
+  console.log(input1.value);
+  // TODO post value to api from ben
+}
 
 
