@@ -2,53 +2,244 @@
 <html class="no-js" lang="">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Click Game</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <link rel="stylesheet" href="css/style.css">
-  <meta name="description" content="">
+  
+  <style>
+    /* Gör så att padding inte påverkar bredd */
+    * {
+      box-sizing: border-box;
+    }
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-  <meta property="og:image:alt" content="">
+    /* Grundstil för hela sidan */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1f2937;
 
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.png">
+      /* Centrerar innehållet på sidan */
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#fafafa">
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Huvudcontainer för spelet */
+    .container {
+      width: 100%;
+      max-width: 700px;
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+
+      /* Skugga för snygg design */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Rubriker centreras */
+    h1, h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    /* Rad med score och timer */
+    .top-bar {
+      display: flex; /* Flexbox layout */
+      justify-content: space-between;
+      gap: 16px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    /* Små kort (score & timer) */
+    .card {
+      flex: 1;
+      min-width: 120px;
+      background: #eef2ff;
+      padding: 16px;
+      border-radius: 14px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    /* Container för input + knappar */
+    .controls {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    /* Inputfält (namn) */
+    input[type="text"] {
+      flex: 1;
+      min-width: 180px;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    /* Grundstil för alla knappar */
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    /* Hover-effekt */
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Start-knapp */
+    #startBtn {
+      background: #2563eb;
+      color: white;
+    }
+
+    /* Klick-knapp (huvudknapp) */
+    #clickBtn {
+      width: 100%;
+      padding: 26px;
+      font-size: 1.3rem;
+      font-weight: bold;
+      background: #10b981;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    /* När klick-knappen är disabled */
+    #clickBtn:disabled {
+      background: #9ca3af;
+      cursor: not-allowed;
+    }
+
+    /* Spara-knapp */
+    #saveBtn {
+      background: #7c3aed;
+      color: white;
+    }
+
+    /* Reset-knapp */
+    #resetBtn {
+      background: #ef4444;
+      color: white;
+    }
+
+    /* Meddelanden (feedback till användaren) */
+    #message {
+      min-height: 24px;
+      margin: 12px 0 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    /* Scoreboard-section */
+    .scoreboard {
+      margin-top: 24px;
+    }
+
+    /* Lista */
+    ol {
+      padding-left: 20px;
+    }
+
+    /* Varje score-rad */
+    li {
+      margin-bottom: 8px;
+      background: #f9fafb;
+      padding: 10px;
+      border-radius: 10px;
+    }
+
+    /* Liten text längst ner */
+    .footer-note {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: #6b7280;
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body>
+<div class="container">
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
+  <!-- Titel -->
+  <h1>Click Game</h1>
 
-<p id="scoreDisplay">0</p>
-  <p id="timerDisplay">60</p>
-  <button id="button1">Click Me</button>
+  <!-- Instruktion -->
+  <p style="text-align:center;">
+    Klicka så många gånger du kan på 60 sekunder.
+  </p>
 
+  <!-- Input + kontrollknappar -->
+  <div class="controls">
 
+    <!-- Input där spelaren skriver sitt namn -->
+    <input
+      type="text"
+      id="playerName"
+      placeholder="Skriv ditt namn"
+      maxlength="20"
+    />
 
-  <label id="label1"> Name (3 to 16 characters )</label><br>
+    <!-- Startar spelet -->
+    <button id="startBtn">Starta spel</button>
 
-<input
-  type="text"
-  id="name"
-  name="name"
-  required
-  minlength="3"
-  maxlength="8"
-  size="16"/>
+    <!-- Sparar score (inaktiv tills spelet är slut) -->
+    <button id="saveBtn" disabled>Spara score</button>
 
-  <button id="button2">Sumbit HighScore</button>
+    <!-- Rensar scoreboard -->
+    <button id="resetBtn">Rensa scoreboard</button>
+  </div>
 
-  <script src="js/app.js"></script>
+  <!-- Visar poäng och timer -->
+  <div class="top-bar">
+
+    <!-- Poäng -->
+    <div class="card">
+      Poäng: <span id="score">0</span>
+    </div>
+
+    <!-- Tid -->
+    <div class="card">
+      Tid kvar: <span id="timer">60</span>s
+    </div>
+  </div>
+
+  <!-- Huvudknapp man klickar på -->
+  <button id="clickBtn" disabled>KLICKA HÄR</button>
+
+  <!-- Här visas feedback från spelet -->
+  <div id="message"></div>
+
+  <!-- Scoreboard -->
+  <div class="scoreboard">
+    <h2>Scoreboard</h2>
+
+    <!-- Lista där scores läggs in via JavaScript -->
+    <ol id="scoreboardList"></ol>
+  </div>
+
+  <!-- Footer-text -->
+  <div class="footer-note">
+    Hoppas att du tyckte det var kul! Välkommen tillbaka!
+  </div>
+
+</div>
+
+<!-- 🔥 Kopplar HTML till din JavaScript-fil -->
+<script src="js/app.js"></script>
 
 </body>
-
 </html>
