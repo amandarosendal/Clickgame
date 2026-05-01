@@ -2,245 +2,56 @@
 <html class="no-js" lang="">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="">
 
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
 
-  <style>
-    /* Designen på min sida */
-    * {
-      box-sizing: border-box;
-    }
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
 
-    /* Grundstilen */
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
-      color: #1f2937;
-
-      /* Centrerar allt innehåll på sidan */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    /* Huvudcontainer för själva spelet , design*/
-    .container {
-      width: 100%;
-      max-width: 700px;
-      background: white;
-      border-radius: 20px;
-      padding: 24px;
-
-      /* Skugga för snygg design */
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    }
-
-    /* Rubrikerna centreras */
-    h1, h2 {
-      margin-top: 0;
-      text-align: center;
-    }
-
-    /* Raden med score och timer */
-    .top-bar {
-      display: flex; /* Flexbox layout */
-      justify-content: space-between;
-      gap: 16px;
-      margin: 20px 0;
-      flex-wrap: wrap;
-    }
-
-    /* Små knappar design (score & timer) design */
-    .card {
-      flex: 1;
-      min-width: 120px;
-      background: #eef2ff;
-      padding: 16px;
-      border-radius: 14px;
-      text-align: center;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-
-    /* Container för input + knappar */
-    .controls {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
-    /* Inputfältet där man skriver namn , design */
-    input[type="text"] {
-      flex: 1;
-      min-width: 180px;
-      padding: 12px;
-      border: 1px solid #d1d5db;
-      border-radius: 10px;
-      font-size: 1rem;
-    }
-
-    /* Grundstilen för alla knappar, design */
-    button {
-      border: none;
-      border-radius: 12px;
-      padding: 12px 18px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    /* Hover-effekten */
-    button:hover {
-      transform: translateY(-1px);
-    }
-
-    /* Start-knapp bakgrund och färg, design */
-    #startBtn {
-      background: #2563eb;
-      color: white;
-    }
-
-    /* Klick-knapp design */
-    #clickBtn {
-      width: 100%;
-      padding: 26px;
-      font-size: 1.3rem;
-      font-weight: bold;
-      background: #10b981;
-      color: white;
-      margin-bottom: 16px;
-    }
-
-    /* När klick-knappen är avstängd , "disabled"*/
-    #clickBtn:disabled {
-      background: #9ca3af;
-      cursor: not-allowed;
-    }
-
-    /* Spara-knapp med färger lila och vit, designen */
-    #saveBtn {
-      background: #7c3aed;
-      color: white;
-    }
-
-    /* Reset-knappens design */
-    #resetBtn {
-      background: #ef4444;
-      color: white;
-    }
-
-    /* Meddelanden design */
-    #message {
-      min-height: 24px;
-      margin: 12px 0 20px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    /* Scoreboard-section */
-    .scoreboard {
-      margin-top: 24px;
-    }
-
-    /* Listan design */
-    ol {
-      padding-left: 20px;
-    }
-
-    /* Varje score-rad design */
-    li {
-      margin-bottom: 8px;
-      background: #f9fafb;
-      padding: 10px;
-      border-radius: 10px;
-    }
-
-    /* Liten text längst ner design */
-    .footer-note {
-      margin-top: 18px;
-      font-size: 0.9rem;
-      color: #6b7280;
-      text-align: center;
-    }
-  </style>
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
-<!-- Vita boxen som omsluter hela spelet -->
-<div class="container">
 
-  <!-- Titeln -->
-  <h1>Click Game</h1>
+<!-- Add your site or application content here -->
+<p>Hello world! This is HTML5 Boilerplate.</p>
 
-  <!-- Instruktionen -->
-  <p style="text-align:center;">
-    Klicka så många gånger du kan på 60 sekunder.
-  </p>
+<p id="scoreDisplay">0</p>
+<p id="timerDisplay">60</p>
+<button id="button1">Click Me</button>
 
-  <!-- Input + kontrollknappar -->
-  <div class="controls">
+<label id="label1" for="name">Name (3 to 16 characters):</label>
 
-    <!-- Input där spelaren skriver sitt namn -->
-    <input
-      type="text"
-      id="playerName"
-      placeholder="Skriv ditt namn"
-      maxlength="20"
-    />
+<input
+  type="text"
+  id="name"
+  name="name"
+  required
+  minlength="3"
+  maxlength="8"
+  size="16" />
+<button id="button2">Submit High Score</button>
 
-    <!-- Startar spelet -->
-    <button id="startBtn">Starta spel</button>
-
-    <!-- Sparar score (inaktiv knapp tills spelet är slut) -->
-    <button id="saveBtn" disabled>Spara score</button>
-
-    <!-- Rensar scoreboard -->
-    <button id="resetBtn">Rensa scoreboard</button>
-  </div>
-
-  <!-- Visar poäng och timer -->
-  <div class="top-bar">
-
-    <!-- Poängen -->
-    <div class="card">
-      Poäng: <span id="score">0</span>
-    </div>
-
-    <!-- Tiden -->
-    <div class="card">
-      Tid kvar: <span id="timer">60</span>s
-    </div>
-  </div>
-
-  <!-- Huvudknapp man klickar på -->
-  <button id="clickBtn" disabled>KLICKA HÄR</button>
-
-  <!-- Här visas feedback från spelet -->
-  <div id="message"></div>
-
-  <!-- Scoreboarden -->
-  <div class="scoreboard">
-    <h2>Scoreboard</h2>
-
-    <!-- Lista där scores läggs in via JavaScript -->
-    <ol id="scoreboardList"></ol>
-  </div>
-
-  <!-- Footer-text , texten längst ner-->
-  <div class="footer-note">
-    Hoppas att du tyckte det var kul! Välkommen tillbaka!
-  </div>
-
-</div>
-
-<!-- Kopplar HTMLfilen till JavaScriptfilen -->
 <script src="js/app.js"></script>
 
+<div class="scoreboard">
+  <h2>Scoreboard</h2>
+
+  <!-- Lista där scores läggs in via JavaScript -->
+  <ol id="scoreboardList"></ol>
+</div>
+
 </body>
+
 </html>
