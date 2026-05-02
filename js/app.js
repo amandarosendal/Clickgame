@@ -5,7 +5,7 @@
 
 // Variables
 let score = 0;
-let timeLeft = 60;
+let timeLeft = 2;
 let gameStarted = false;
 let gameEnded = false;
 let interval = null;
@@ -18,7 +18,7 @@ const timerDisplay = document.getElementById('timerDisplay');
 const label1 = document.getElementById('label1');
 const input1 = document.getElementById('name');
 const scoreboardList = document.getElementById('scoreboardList');
-const message = document.getElementById('message');
+const message = document.getElementById('scoreSavedSucessfully');
 
 // UI Functions & Events
 button1.addEventListener('click', () => {
@@ -33,7 +33,7 @@ button1.addEventListener('click', () => {
 
 button2.addEventListener('click', () => {
   submitHighScore();
-})
+});
 
 input1.style.display = 'none';
 label1.style.display = 'none';
@@ -69,6 +69,17 @@ function endGame() {
   button2.style.display = 'block';
 }
 
+//Sparar score med namn, hämtar gamla scores från browser
 function submitHighScore() {
   const name = input1.value;
+
+  let scores = localStorage.getItem('scores') || '';
+
+  scores = scores + name + ': ' + score + '\n';
+
+  localStorage.setItem('scores', scores);
+
+  scoreboardList.innerText = scores;
+
+  message.innerText = 'Score saved successfully!';
 }
