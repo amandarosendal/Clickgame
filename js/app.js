@@ -17,6 +17,8 @@ const scoreDisplay = document.getElementById('scoreDisplay');
 const timerDisplay = document.getElementById('timerDisplay');
 const label1 = document.getElementById('label1');
 const input1 = document.getElementById('name');
+const scoreboardList = document.getElementById('scoreboardList');
+const message = document.getElementById('message');
 
 // UI Functions & Events
 button1.addEventListener('click', () => {
@@ -68,6 +70,5 @@ function endGame() {
 }
 
 function submitHighScore() {
-  console.log(input1.value);
-  // TODO: POST value to API from Ben.
+  const name = input1.value;
 }
