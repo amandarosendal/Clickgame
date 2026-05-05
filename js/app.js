@@ -73,13 +73,4 @@ function endGame() {
 function submitHighScore() {
   const name = input1.value;
 
-  let scores = localStorage.getItem('scores') || '';
 
-  scores = scores + name + ': ' + score + '\n';
-
-  localStorage.setItem('scores', scores);
-
-  scoreboardList.innerText = scores;
-
-  message.innerText = 'Score saved successfully!';
-}
