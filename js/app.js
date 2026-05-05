@@ -76,9 +76,6 @@ function submitHighScore() {
 // Skickar namn och score till API- POST request
   fetch("https://hooks.zapier.com/hooks/catch/8338993/ujs9jj9/", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
     body: JSON.stringify({
       name: name,
       score: score
