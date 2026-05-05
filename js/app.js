@@ -18,7 +18,7 @@ const timerDisplay = document.getElementById('timerDisplay');
 const label1 = document.getElementById('label1');
 const input1 = document.getElementById('name');
 const scoreboardList = document.getElementById('scoreboardList');
-const message = document.getElementById('scoreSavedSucessfully');
+const message = document.getElementById('scoreSavedSuccessfully');
 
 // UI Functions & Events
 button1.addEventListener('click', () => {
@@ -69,8 +69,26 @@ function endGame() {
   button2.style.display = 'block';
 }
 
-//Sparar score med namn, hämtar gamla scores från browser
+// Funktion som körs när jag trycker på sumbit knappen + namnet som skrivs i inputfältet
 function submitHighScore() {
   const name = input1.value;
 
+// Skickar namn och score till API- POST request
+  fetch("https://hooks.zapier.com/hooks/catch/8338993/ujs9jj9/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: name,
+      score: score
+    })
+  })
+    .then(response => {
+      message.innerText = "Your score was sent successfully!"; //Visar meddelande om requesten skickades
+    })
+    .catch(error => {
+      message.innerText = "Error."; //Visar meddelande om något gick fel
+    });
+}
 
