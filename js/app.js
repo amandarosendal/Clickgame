@@ -88,7 +88,7 @@ function submitHighScore() {
       message.innerText = "Your score was sent successfully!"; //Visar meddelande om requesten skickades
     })
     .catch(error => {
-      message.innerText = "Error."; //Visar meddelande om något gick fel
+      message.innerText = "Error, could not send score."; //Visar meddelande om något gick fel
     });
 }
 
